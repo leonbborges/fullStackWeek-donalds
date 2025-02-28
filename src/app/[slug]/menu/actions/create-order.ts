@@ -39,6 +39,7 @@ export const createOrder = async (input: CreateOrderInput) => {
   const productsWithPricesAndQuantities = input.products.map((product) => ({
     productId: product.id,
     quantity: product.quantity,
+    // biome-ignore lint/style/noNonNullAssertion: <explanation>
     price: productsWithPrices.find((p) => p.id === product.id)!.price,
   }));
   await db.order.create({
